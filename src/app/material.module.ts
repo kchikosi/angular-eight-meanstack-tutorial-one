@@ -14,12 +14,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-// import { MatNativeDateModule } from '@angular/material/native-date';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-// import { AngularMaterialModule } from './material.module';
 
 @NgModule({
     imports: [
@@ -36,12 +34,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       MatSelectModule,
       MatRadioModule,
       MatDatepickerModule,
-    //   MatNativeDateModule,
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule,
-      AngularMaterialModule
+      MatPaginatorModule
     ],
     exports: [
       MatButtonModule,
@@ -59,11 +55,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule,
-      AngularMaterialModule
+      MatPaginatorModule
     ],
     providers: [     
-	  MatDatepickerModule,
+	    MatDatepickerModule,
     ]
 })
 
