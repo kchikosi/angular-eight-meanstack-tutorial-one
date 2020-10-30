@@ -6,13 +6,14 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'angular-eight-meanstack-tutorial-one';
   opened = true;
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   ngOnInit() {
-    console.log(window.innerWidth);
+    console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;
       this.opened = false;
@@ -22,7 +23,7 @@ export class AppComponent {
     }
   }
 
-  @HostListener('window.resize', ['$event'])
+  @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;
