@@ -1,9 +1,18 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { NgZone } from '@angular/core';
+import { COMMA } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
+import { Validators } from "@angular/forms";
+export interface Subject {
+  name: string;
+} 
 
 @Component({
   selector: 'app-add-student',
@@ -11,12 +20,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   styleUrls: ['./add-student.component.css']
 })
 
-export interface Subject {
-  name: string;
-}
-
 export class AddStudentComponent implements OnInit {
-
   visible = true;
   selectable = true;
   removable = true;
@@ -26,7 +30,7 @@ export class AddStudentComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   studentForm: FormGroup;
   subjectArray: Subject[] = [];
-  SectionInArray: any = ['A', 'B', 'C', 'D', 'E'];
+  SectionArray: any = ['A', 'B', 'C', 'D', 'E'];
   
   constructor(
     public fb: FormBuilder,
