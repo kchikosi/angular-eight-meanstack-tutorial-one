@@ -29,9 +29,8 @@
         <!-- Section -->
         <mat-form-field>
           <mat-label>Section</mat-label>
-          <mat-select [(value)]="selected" formControlName="section">
-            <mat-option [value]="sectioinArray" *ngFor="let sectioinArray of SectioinArray">{{sectioinArray}}
-            </mat-option>
+          <mat-select [(ngModel)]="selectable" name="section">
+            <mat-option *ngFor="let section of SectionArray">{{section}}</mat-option>
           </mat-select>
           <mat-error *ngIf="handleError('section', 'required')">
             Section is required
