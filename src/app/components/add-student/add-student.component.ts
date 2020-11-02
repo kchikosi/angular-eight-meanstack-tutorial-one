@@ -1,15 +1,11 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA } from '@angular/cdk/keycodes';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
-import { FormGroup } from "@angular/forms";
-import { FormBuilder } from "@angular/forms";
-import { Validators } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+
 export interface Subject {
   name: string;
 } 
@@ -22,7 +18,7 @@ export interface Subject {
 
 export class AddStudentComponent implements OnInit {
   visible = true;
-  selectable = true;
+  // selectable = true;
   removable = true;
   addOnBlur = true;
   @ViewChild('chipList') chipList;
@@ -30,6 +26,7 @@ export class AddStudentComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   studentForm: FormGroup;
   subjectArray: Subject[] = [];
+  sectionControl = new FormControl('', Validators.required);
   SectionArray: any = ['A', 'B', 'C', 'D', 'E'];
   
   constructor(
