@@ -66,13 +66,13 @@
     "@angular/animations": "^9.1.12",
     "@angular/cdk": "^9.1.2",
     "@angular/cli": "^9.1.12",
-    "@angular/common": "^9.1.12",
+    "@angular/common": "^9.1.2",
     "@angular/compiler": "^9.1.12",
     "@angular/compiler-cli": "^9.1.12",
-    "@angular/core": "^9.1.12",
+    "@angular/core": "^9.1.2",
     "@angular/forms": "^9.1.12",
     "@angular/material": "^9.1.2",
-    "@angular/platform-browser": "^9.1.2",
+    "@angular/platform-browser": "^9.1.12",
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
     "@babel/code-frame": {
@@ -12944,5 +12944,8 @@
       "version": "3.1.1"
     },
     "zone.js": "^0.10.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
