@@ -10,6 +10,11 @@ export interface Subject {
   name: string;
 } 
 
+export interface Section {
+  value: string;
+  viewValue: string;  
+}
+
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -18,17 +23,24 @@ export interface Subject {
 
 export class AddStudentComponent implements OnInit {
   visible = true;
-  // selectable = true;
-  removable = true;
+  selectedValue: string;
   addOnBlur = true;
   @ViewChild('chipList') chipList;
   @ViewChild('resetStudentForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   studentForm: FormGroup;
   subjectArray: Subject[] = [];
-  sectionControl = new FormControl('', Validators.required);
-  SectionArray: any = ['A', 'B', 'C', 'D', 'E'];
+  section = new FormControl('', Validators.required);
+  sectionList: string[] = ['A', 'B', 'C', 'D', 'E'];
   
+  sections: Section[] = [
+    {value: 'A', viewValue: 'A'},
+    {value: 'B', viewValue: 'B'},
+    {value: 'C', viewValue: 'C'},
+    {value: 'D', viewValue: 'D'},
+    {value: 'E', viewValue: 'E'}
+  ];
+
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -56,7 +68,7 @@ export class AddStudentComponent implements OnInit {
     const value = event.value;
     // Add language
     if ((value || '').trim() && this.subjectArray.length < 5) {
-      this.subjectArray.push({ name: value.trim() })
+      this.subjectArray.push({ name: value.trim() });
     }
     // Reset the input value
     if (input) {
@@ -87,10 +99,13 @@ export class AddStudentComponent implements OnInit {
 
   /* Submit book */
   submitStudentForm() {
+    console.log(this.studentForm.value); // log data to console
     if (this.studentForm.valid) {
       this.studentApi.AddStudent(this.studentForm.value).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/students-list'))
       });
+    } else {
+      console.log('Data is invalid result: ' + this.studentForm.valid +' -> '+ this.studentForm.value);
     }
   }
 }

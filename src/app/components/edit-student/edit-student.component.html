@@ -27,14 +27,15 @@
           </mat-form-field>
   
           <!-- Section -->
-          <mat-form-field>
+          <mat-form-field appearance="fill">
             <mat-label>Section</mat-label>
-            <mat-select [(ngModel)]="selectable" name="section">
-                <mat-option *ngFor="let section of SectionArray">{{section}}</mat-option>
+            <mat-select formControlName="section">
+              <mat-option *ngFor="let section of sections" [value]="section.value">
+                {{section.viewValue}}
+              </mat-option>
+              <mat-error *ngIf="section.hasError('required')">Section is required</mat-error>
             </mat-select>
-            <mat-error *ngIf="handleError('section', 'required')">
-              Section is required
-            </mat-error>
+            <mat-error></mat-error>
           </mat-form-field>
         </div>
       </mat-card>

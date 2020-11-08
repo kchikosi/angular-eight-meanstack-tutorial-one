@@ -3,10 +3,15 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from './../../shared/api.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 export interface Subject {
   name: string;
+}
+
+export interface Section {
+  value: string;
+  viewValue: string;
 }
 @Component({
   selector: 'app-edit-student',
@@ -15,15 +20,24 @@ export interface Subject {
 })
 export class EditStudentComponent implements OnInit {
   visible = true;
-  selectable = true;
-  removable = true;
+  selectedValue = true;
+  // removable = true;
   addOnBlur = true;
   @ViewChild('chipList') chipList;
   @ViewChild('resetStudentForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   studentForm: FormGroup;
   subjectArray: Subject[] = [];
-  SectionArray: any = ['A', 'B', 'C', 'D', 'E'];
+  section = new FormControl('', Validators.required);
+  sectionList: string[] = ['A', 'B', 'C', 'D', 'E'];
+  
+  sections: Section[] = [
+    {value: 'A', viewValue: 'A'},
+    {value: 'B', viewValue: 'B'},
+    {value: 'C', viewValue: 'C'},
+    {value: 'D', viewValue: 'D'},
+    {value: 'E', viewValue: 'E'}
+  ];
   
   constructor(    
     public fb: FormBuilder,
@@ -95,7 +109,7 @@ export class EditStudentComponent implements OnInit {
 
   /* Update book */
   updateStudentForm() {
-    console.log(this.studentForm.value)
+    console.log(this.studentForm.value) // log form data to console
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you want to update?')) {
       this.studentApi.UpdateStudent(id, this.studentForm.value).subscribe( res => {
